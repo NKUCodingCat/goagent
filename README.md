@@ -3,7 +3,7 @@ goagent 3.2.3 [http://git.io/goa](https://nodeload.github.com/goagent/goagent/le
 ## Issues
 * https://code.google.com/p/goagent/issues/list
  
-## Py 2.7.9+运行指南
+## Py 2.7.9+ on Linux 运行指南
 1. 删除packages.egg
 2. pip安装gevent，dnslib
 3. Done
