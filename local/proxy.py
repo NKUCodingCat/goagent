@@ -65,6 +65,7 @@ sys.path = [(os.path.dirname(__file__) or '.') + '/packages.egg/noarch'] + sys.p
 try:
     __import__('gevent.monkey', fromlist=['.']).patch_all()
 except (ImportError, SystemError):
+    #raise
     sys.exit(sys.stderr.write('please install python-gevent\n'))
 
 import base64
@@ -1490,7 +1491,7 @@ class Common(object):
     def summary(self):
         info = ''
         info += '------------------------------------------------------\n'
-        info += 'GoAgent Version    : %s (python/%s gevent/%s pyopenssl/%s)\n' % (__version__, sys.version[:5], gevent.__version__, OpenSSL.__version__)
+        info += 'GoAgent Version    : %s (python/%s gevent/%s pyopenssl/%s)\n' % (__version__, re.findall('\d+\.\d+\.\d+', sys.version)[0], gevent.__version__, OpenSSL.__version__)
         info += 'Uvent Version      : %s (pyuv/%s libuv/%s)\n' % (__import__('uvent').__version__, __import__('pyuv').__version__, __import__('pyuv').LIBUV_VERSION) if all(x in sys.modules for x in ('pyuv', 'uvent')) else ''
         info += 'Listen Address     : %s:%d\n' % (self.LISTEN_IP, self.LISTEN_PORT)
         info += 'Local Proxy        : %s:%s\n' % (self.PROXY_HOST, self.PROXY_PORT) if self.PROXY_ENABLE else ''
